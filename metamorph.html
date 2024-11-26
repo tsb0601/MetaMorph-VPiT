@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>MetaMorph: Multimodal Understanding and Generation via Instruction Tuning</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <style>
+            :root {
+                --primary: #2563eb;
+                --secondary: #4f46e5;
+                --accent: #7c3aed;
+                --background: #f0f5ff;  /* Light blue background */
+                --text: #1e293b;
+            }
+
+            .header-wrapper {
+                background: linear-gradient(135deg, var(--background), #f5f3ff);
+                padding: 2rem 0;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .header-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+                z-index: 0;
+            }
+
+            .header-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .header-content h1 {
+                font-size: 3.5rem;
+                margin: 0;
+                background: linear-gradient(45deg, var(--primary), var(--accent));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .header-content h2 {
+                font-size: 1.8rem;
+                font-weight: 500;
+                color: #666;
+                margin: 1rem 0 2rem;
+            }
+
+            .emphasis-text {
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin: 2rem 0;
+                padding: 1rem 1.5rem;
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+                border-left: 4px solid var(--accent);
+                border-radius: 0 8px 8px 0;
+                color: var(--primary);
+            }
+
+            .emphasis-text strong {
+                color: var(--accent);
+            }
+
+            .header-image {
+                position: relative;
+            }
+
+            .header-image img {
+                width: 100%;
+                border-radius: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .header-image::before {
+                content: '';
+                position: absolute;
+                top: 1rem;
+                right: -1rem;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, var(--primary), var(--accent));
+                border-radius: 1rem;
+                z-index: -1;
+                opacity: 0.8;
+            }
+
+            /* Rest of your existing styles... */
+
+            .icon-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin: 2rem 0;
+            }
+
+            .icon-item {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 1rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s;
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.2s;
+                background: white;
+                color: var(--text);
+                border: 1px solid #e5e7eb;
+            }
+
+            .paper-link {
+                background: linear-gradient(45deg, var(--primary), var(--secondary));
+                color: white;
+                border: none;
+            }
+
+            .button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header-wrapper">
+            <div class="header-container">
+                <div class="header-content">
+                    <h1>MetaMorph</h1>
+                    <h2>Multimodal Understanding and Generation via Instruction Tuning</h2>
+                    <p>
+                        We show that LLMs can be finetuned to unified models with instruction tuning.
+                    </p>
+
+                    <div class="emphasis-text">
+                        LLM is already <strong>VERY CLOSE</strong> to becoming a Unified Model!
+                    </div>
+
+                    <div class="icon-container">
+                        <!-- Icon items as before -->
+                    </div>
+
+                    <div class="button-container">
+                        <a href="#" class="button paper-link">
+                            <i class="ai ai-arxiv"></i>
+                            arXiv
+                        </a>
+                        <a href="#" class="button">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        
+                    </div>
+                </div>
+                <div class="header-image">
+                    <img src="static/img/metamorph_teaser.webp" alt="MetaMorph Overview" class="teaser-image">
+                </div>
+            </div>
+        </div>
+    </body>
+    <div class="byline">
+        <div class="byline-container">
+            <p class="authors">
+                <a href="https://tsb0601.github.io/petertongsb/" class="author-link" target="_blank">Shengbang Tong<sup>1,2,*,†</sup></a> &emsp;
+                <a href="https://davidfan.io/" class="author-link" target="_blank">David Fan<sup>1</sup></a> &emsp;
+                <a href="https://jiachenzhu.github.io/" class="author-link" target="_blank">Jiachen Zhu<sup>1,2,*</sup></a> &emsp;
+                <a href="https://pages.cs.wisc.edu/~yunyang/" class="author-link" target="_blank">Yunyang Xiong<sup>3</sup></a> &emsp;
+                <a href="https://xinleic.xyz/" class="author-link" target="_blank">Xinlei Chen<sup>1</sup></a> &emsp;
+                <br>
+                <a href="https://koustuvsinha.com/" class="author-link" target="_blank">Koustuv Sinha<sup>1</sup></a> &emsp;
+                <a href="https://ai.meta.com/people/1148536089838617/michael-rabbat/" class="author-link" target="_blank">Michael Rabbat<sup>1</sup></a> &emsp;
+                <a href="https://yann.lecun.com/" class="author-link" target="_blank">Yann LeCun<sup>1,2</sup></a> &emsp;
+                <a href="https://www.sainingxie.com/" class="author-link" target="_blank">Saining Xie<sup>2</sup></a> &emsp;
+                <a href="https://liuzhuang13.github.io/" class="author-link" target="_blank">Zhuang Liu<sup>1,†</sup></a>
+            </p>
+            <div class="affiliations">
+                <p>
+                    <a href="https://fair.meta.com/" class="affiliation-link" target="_blank"><sup>1</sup>FAIR, Meta</a> &emsp;
+                    <a href="https://cs.nyu.edu/home/index.html" class="affiliation-link" target="_blank"><sup>2</sup>New York University</a> &emsp;
+                    <a href="#" class="affiliation-link" target="_blank"><sup>3</sup>Meta Reality Labs</a>
+                </p>
+            </div>
+            <p class="author-notes" style="text-align: center;">
+                <span class="author-note"><sup>*</sup>Work done at Meta</span> &emsp;
+                <span class="author-note"><sup>†</sup>Corresponding authors</span>
+            </p>
+        </div>
+        
+        <style>
+            .byline {
+                margin: 2rem 0;
+                padding: 1rem 0;
+                border-top: 1px solid rgba(0,0,0,0.1);
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+            
+            .byline-container {
+                max-width: 900px;
+                margin: 0 auto;
+                text-align: center;
+            }
+            
+            .authors {
+                font-size: 1.1rem;
+                line-height: 2;
+                margin-bottom: 1rem;
+            }
+            
+            .author-link {
+                color: var(--text);
+                text-decoration: none;
+                transition: color 0.2s;
+                white-space: nowrap;
+            }
+            
+            .author-link:hover {
+                color: var(--primary);
+            }
+            
+            .affiliations {
+                font-size: 1rem;
+                color: #666;
+                margin: 1rem 0;
+            }
+            
+            .affiliation-link {
+                color: #666;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            
+            .affiliation-link:hover {
+                color: var(--primary);
+            }
+            
+            .author-notes {
+                font-size: 0.9rem;
+                color: #666;
+            }
+            
+            .author-note {
+                display: inline-block;
+                margin: 0 0.5rem;
+            }
+            
+            sup {
+                font-size: 0.75em;
+                line-height: 0;
+                position: relative;
+                vertical-align: baseline;
+                top: -0.5em;
+            }
+        </style>
+    </div>
+</html>
