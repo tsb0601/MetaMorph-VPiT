@@ -378,9 +378,10 @@
             }
     
             .finding-visual {
-                width: 100%;
+                width: 90%;
                 display: flex;
                 justify-content: center;
+                align-items: center; /* Centers the content vertically */
                 background: #f8faff;
                 border-radius: 0.5rem;
                 padding: 1rem;
@@ -450,11 +451,11 @@
                     </div>
                     <div class="finding-content">
                         <div class="finding-description">
-                            <p>Visual generation capability can be unlocked with significantly less data when co-trained with visual understanding tasks. Our experiments show that as little as <strong>200K samples</strong> are sufficient when combined with understanding tasks, compared to millions needed for pure generation training.</p>
-                            <div class="stat-highlight">
+                            <p>Visual generation capability can be unlocked with significantly less data when co-trained with visual understanding tasks. Our experiments show that 5000 examples are enough to trigger visual generation and 200K samples are sufficient to geneate high-quality visual tokens when combined with understanding tasks, compared to millions needed for pure generation training.</p>
+                            <!-- <div class="stat-highlight">
                                 <div class="stat-number">200K</div>
                                 <div class="stat-label">Samples needed with co-training vs. millions for traditional approaches</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -476,15 +477,15 @@
                 </div>
                 <div class="finding-details" id="finding2">
                     <div class="finding-visual">
-                        <img src="static/img/correlation_plot.png" alt="Understanding-Generation Correlation">
+                        <img src="static/img/understanding_generation.PNG" alt="Understanding-Generation Correlation">
                     </div>
                     <div class="finding-content">
                         <div class="finding-description">
                             <p>There exists a strong correlation between visual understanding and generation capabilities. As models improve their understanding abilities, their generation capabilities naturally enhance, and vice versa, creating a powerful synergistic effect.</p>
-                            <div class="stat-highlight">
+                            <!-- <div class="stat-highlight">
                                 <div class="stat-number">Strong Correlation</div>
                                 <div class="stat-label">Between understanding and generation performance metrics</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
