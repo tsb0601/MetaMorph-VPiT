@@ -279,8 +279,30 @@
     </div>
     <section class="findings">
         <style>
-            /* Previous styles remain... */
+            .findings {
+                background: linear-gradient(135deg, #f8faff 0%, #faf5ff 100%);
+                padding: 4rem 0;
+            }
+    
+            .findings-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+    
+            .section-title {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
             
+            .section-title h2 {
+                font-size: 2.5rem;
+                background: linear-gradient(45deg, var(--primary), var(--accent));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 1rem;
+            }
+    
             .finding-card {
                 background: white;
                 border-radius: 1rem;
@@ -339,8 +361,8 @@
             }
     
             .finding-details {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                display: flex;
+                flex-direction: column;
                 gap: 2rem;
                 overflow: hidden;
                 max-height: 0;
@@ -349,10 +371,51 @@
             }
     
             .finding-details.expanded {
-                max-height: 1000px;
+                max-height: 2000px;
                 opacity: 1;
                 padding-top: 2rem;
                 border-top: 1px solid rgba(0,0,0,0.1);
+            }
+    
+            .finding-visual {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                background: #f8faff;
+                border-radius: 0.5rem;
+                padding: 1rem;
+            }
+    
+            .finding-visual img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 0.5rem;
+            }
+    
+            .finding-content {
+                padding: 0 1rem;
+            }
+    
+            .finding-description {
+                color: #666;
+                line-height: 1.6;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+    
+            .stat-highlight {
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+                padding: 1rem;
+                border-radius: 0.5rem;
+                margin-top: 1rem;
+                text-align: center;
+            }
+    
+            .stat-number {
+                font-size: 2rem;
+                font-weight: bold;
+                color: var(--primary);
+                margin-bottom: 0.5rem;
             }
     
             .finding-card:hover {
@@ -373,7 +436,7 @@
                     <div class="finding-header-content">
                         <div class="finding-number">Finding 1</div>
                         <div class="finding-title">Visual Generation Emerges Naturally From Understanding</div>
-                        <div class="finding-summary">We only need very small number of samples to unlock visual generation when co-training with understanding tasks,</div>
+                        <div class="finding-summary">We only need very small number of samples to unlock visual generation when co-training with understanding tasks.</div>
                     </div>
                     <button class="toggle-button" id="toggle1">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -382,6 +445,9 @@
                     </button>
                 </div>
                 <div class="finding-details" id="finding1">
+                    <div class="finding-visual">
+                        <img src="static/img/fid_special_points_plot_new.jpg" alt="Data Efficiency Comparison">
+                    </div>
                     <div class="finding-content">
                         <div class="finding-description">
                             <p>Visual generation capability can be unlocked with significantly less data when co-trained with visual understanding tasks. Our experiments show that as little as <strong>200K samples</strong> are sufficient when combined with understanding tasks, compared to millions needed for pure generation training.</p>
@@ -390,9 +456,6 @@
                                 <div class="stat-label">Samples needed with co-training vs. millions for traditional approaches</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="finding-visual">
-                        <img src="static/img/fid_special_points_plot_new.jpg" alt="Data Efficiency Comparison">
                     </div>
                 </div>
             </div>
@@ -403,7 +466,7 @@
                     <div class="finding-header-content">
                         <div class="finding-number">Finding 2</div>
                         <div class="finding-title">Visual Understanding and Generation are Synergistic</div>
-                        <div class="finding-summary">Better understanding leads to better geneation and vice versa</div>
+                        <div class="finding-summary">Better understanding leads to better generation and vice versa</div>
                     </div>
                     <button class="toggle-button" id="toggle2">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -412,72 +475,103 @@
                     </button>
                 </div>
                 <div class="finding-details" id="finding2">
-                    <!-- Similar structure as Finding 1 details -->
+                    <div class="finding-visual">
+                        <img src="static/img/correlation_plot.png" alt="Understanding-Generation Correlation">
+                    </div>
+                    <div class="finding-content">
+                        <div class="finding-description">
+                            <p>There exists a strong correlation between visual understanding and generation capabilities. As models improve their understanding abilities, their generation capabilities naturally enhance, and vice versa, creating a powerful synergistic effect.</p>
+                            <div class="stat-highlight">
+                                <div class="stat-number">Strong Correlation</div>
+                                <div class="stat-label">Between understanding and generation performance metrics</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+    
+            <!-- Finding 3 -->
             <div class="finding-card">
-                <div class="finding-header" onclick="toggleDetails('finding2')">
+                <div class="finding-header" onclick="toggleDetails('finding3')">
                     <div class="finding-header-content">
                         <div class="finding-number">Finding 3</div>
                         <div class="finding-title">Understanding Data is Much More Effective for Both Understanding and Generation</div>
-                        <div class="finding-summary">Strong correlation (>0.85) between understanding and generation abilities</div>
+                        <div class="finding-summary">Understanding data significantly improves both understanding and generation performance comparing to generation data.</div>
                     </div>
-                    <button class="toggle-button" id="toggle2">
+                    <button class="toggle-button" id="toggle3">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
-                <div class="finding-details" id="finding2">
-                    <!-- Similar structure as Finding 1 details -->
+                <div class="finding-details" id="finding3">
+                    <div class="finding-visual">
+                        <img src="static/img/data_impact.png" alt="Data Impact Comparison">
+                    </div>
+                    <div class="finding-content">
+                        <div class="finding-description">
+                            <p>Understanding data proves to be significantly more valuable than generation data. The impact of understanding data on both tasks suggests that focusing on understanding capabilities is a more efficient training strategy.</p>
+                            <div class="stat-highlight">
+                                <div class="stat-number">2-3×</div>
+                                <div class="stat-label">Greater improvement from understanding data across all metrics</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+    
+            <!-- Finding 4 -->
             <div class="finding-card">
-                <div class="finding-header" onclick="toggleDetails('finding2')">
+                <div class="finding-header" onclick="toggleDetails('finding4')">
                     <div class="finding-header-content">
                         <div class="finding-number">Finding 4</div>
-                        <div class="finding-title">Visual Generation Fits into Fundamental Vision Tasks</div>
-                        <div class="finding-summary">Strong correlation (>0.85) between understanding and generation abilities</div>
+                        <div class="finding-title">Visual Generation Aligns With Visually Demanding Understanding Tasks</div>
+                        <div class="finding-summary">Generation ability strongly correlates with visual understanding tasks but not with knowledge-based tasks</div>
                     </div>
-                    <button class="toggle-button" id="toggle2">
+                    <button class="toggle-button" id="toggle4">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
-                <div class="finding-details" id="finding2">
-                    <!-- Similar structure as Finding 1 details -->
+                <div class="finding-details" id="finding4">
+                    <div class="finding-visual">
+                        <img src="static/img/task_correlations.png" alt="Task Correlation Analysis">
+                    </div>
+                    <div class="finding-content">
+                        <div class="finding-description">
+                            <p>Visual generation capabilities show strong correlation with visually demanding tasks but weaker correlation with knowledge-based tasks. This suggests that visual understanding and generation share fundamental visual processing capabilities.</p>
+                            <div class="stat-highlight">
+                                <div class="stat-number">0.85+</div>
+                                <div class="stat-label">Correlation with visual understanding tasks</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            
-    
-            <!-- Additional findings follow same pattern -->
-    
-            <script>
-                function toggleDetails(id) {
-                    const details = document.getElementById(id);
-                    const button = document.getElementById('toggle' + id.slice(-1));
-                    const isExpanded = details.classList.contains('expanded');
-                    
-                    // Collapse all other sections
-                    document.querySelectorAll('.finding-details').forEach(el => {
-                        el.classList.remove('expanded');
-                    });
-                    document.querySelectorAll('.toggle-button').forEach(btn => {
-                        btn.style.transform = 'rotate(0deg)';
-                    });
-                    
-                    // Toggle current section
-                    if (!isExpanded) {
-                        details.classList.add('expanded');
-                        button.style.transform = 'rotate(180deg)';
-                    }
-                }
-            </script>
         </div>
-    </section>
     
+        <script>
+            function toggleDetails(id) {
+                const details = document.getElementById(id);
+                const button = document.getElementById('toggle' + id.slice(-1));
+                const isExpanded = details.classList.contains('expanded');
+                
+                // Collapse all other sections
+                document.querySelectorAll('.finding-details').forEach(el => {
+                    el.classList.remove('expanded');
+                });
+                document.querySelectorAll('.toggle-button').forEach(btn => {
+                    btn.style.transform = 'rotate(0deg)';
+                });
+                
+                // Toggle current section
+                if (!isExpanded) {
+                    details.classList.add('expanded');
+                    button.style.transform = 'rotate(180deg)';
+                }
+            }
+        </script>
+    </section>
+  
 </html>
