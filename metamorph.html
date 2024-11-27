@@ -1,9 +1,17 @@
 <!doctype html>
 <html lang="en">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+
     <head>
         <title>MetaMorph: Multimodal Understanding and Generation via Instruction Tuning</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+
         
         <style>
             :root {
@@ -1086,13 +1094,136 @@
                     </div>
                     <button class="toggle-button" id="toggle-button-performance">↓</button>
                 </div>
+                
+                <style>
+                    .examples-container {
+                        width: 100%;
+                        padding: 1.5rem;
+                        background: white;
+                        border-radius: 1rem;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    .example-nav {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 1.5rem;
+                        padding: 0 0.5rem;
+                    }
+                    
+                    .nav-button {
+                        background: white;
+                        border: 1px solid rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        font-size: 1.25rem;
+                        color: var(--primary);
+                        padding: 0.75rem 1rem;
+                        border-radius: 0.75rem;
+                        transition: all 0.2s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    
+                    .nav-button:hover {
+                        background: var(--primary);
+                        color: white;
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    .example {
+                        display: none;
+                        width: 100%;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    
+                    .example.active {
+                        display: block;
+                        opacity: 1;
+                    }
+                    
+                    .example img {
+                        width: 100%;
+                        border-radius: 1rem;
+                        margin-bottom: 1.5rem;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    .example-text {
+                        background: #f8fafc;
+                        padding: 2rem;
+                        border-radius: 1rem;
+                        border: 1px solid rgba(0, 0, 0, 0.05);
+                    }
+                    
+                    .prompt, .analysis {
+                        margin-bottom: 1.5rem;
+                    }
+                    
+                    .prompt:last-child, .analysis:last-child {
+                        margin-bottom: 0;
+                    }
+                    
+                    .prompt h4, .analysis h4 {
+                        font-weight: 600;
+                        margin-bottom: 0.75rem;
+                        color: var(--primary);
+                        font-size: 1.1rem;
+                    }
+                    
+                    .prompt p, .analysis p {
+                        color: #4b5563;
+                        line-height: 1.6;
+                        font-size: 1rem;
+                    }
+                    
+                    #example-counter {
+                        font-size: 0.95rem;
+                        color: #4b5563;
+                        font-weight: 500;
+                        background: #f8fafc;
+                        padding: 0.5rem 1rem;
+                        border-radius: 0.5rem;
+                        border: 1px solid rgba(0, 0, 0, 0.05);
+                    }
+                    
+                    /* Optional: Add smooth transitions between examples */
+                    .example {
+                        animation: fadeIn 0.3s ease;
+                    }
+                    
+                    @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                            transform: translateY(10px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    /* Optional: Add responsive adjustments */
+                    @media (max-width: 768px) {
+                        .examples-container {
+                            padding: 1rem;
+                        }
+                    
+                        .example-text {
+                            padding: 1.5rem;
+                        }
+                    }
+                    </style>
     
                 <div class="performance-details" id="performance-details">
                     <!-- Table will go here - you can copy-paste the existing table -->
                     
                     <div class="performance-text">
                         <p>
-                            MetaMorph demonstrates competitive performance across a wide range of tasks while maintaining efficiency in training data requirements:
+                            MetaMorph demonstrates competitive performance across a wide range of tasks
                         </p>
 
                         <div id="tab:final_table" style="display: flex; flex-direction: column; align-items: center;">
@@ -1301,7 +1432,7 @@
                             </div>
                         </div>
              -->
-                        <div class="highlight-box">
+                        <!-- <div class="highlight-box">
                             <strong>Key Achievements:</strong>
                             <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
                                 <li>Outperforms other open-source unified models across most benchmarks</li>
@@ -1312,7 +1443,7 @@
             
                         <p>
                             These results demonstrate that efficient instruction tuning with VPiT can achieve competitive performance without requiring extensive pretraining or architectural modifications. The model particularly excels in tasks requiring both understanding and generation capabilities, showing the effectiveness of our unified approach.
-                        </p>
+                        </p> -->
                     </div>
                 </div>
             </div>
@@ -1346,13 +1477,15 @@
                     }
                 });
             </script>
+
+            
     
             <!-- Feature 2: Knowledge Integration -->
             <div class="feature-card" onclick="toggleModelFeature('model-feature2')">
                 <div class="feature-header">
                     <div>
                         <div class="feature-title">LLM Knowledge Leverage</div>
-                        <div class="feature-summary">Successfully utilizes pretrained LLM knowledge for visual generation</div>
+                        <div class="feature-summary">Successfully utilizes pretrained LLM knowledge and capability for visual generation</div>
                     </div>
                     <button class="toggle-button" id="toggle-model2">↓</button>
                 </div>
@@ -1364,21 +1497,222 @@
                             <li>Handles complex semantic nuances (negation, comparatives)</li>
                             <li>Transfers world knowledge to visual domain</li>
                         </ul>
-                        <div class="evidence-box">
+                        <!-- <div class="evidence-box">
                             <strong>Example:</strong> Successfully generates rare concepts that require domain knowledge
-                        </div>
+                        </div> -->
                     </div>
                     <div class="visual-example">
-                        <img src="knowledge_examples.png" alt="Knowledge Integration Examples">
+                        <div class="examples-container">
+                            <!-- Example Navigation -->
+                            <div class="example-nav">
+                                <button onclick="event.stopPropagation(); previousExample()" class="nav-button">
+                                    ←
+                                </button>
+                                <span id="example-counter">Example 1/5</span>
+                                <button onclick="event.stopPropagation(); nextExample()" class="nav-button">
+                                    →
+                                </button>
+                            </div>
+                    
+                            <!-- Examples -->
+                            <div class="examples">
+                                <div class="example active" data-index="0">
+                                    <img src="static/img/chhogori.png" alt="Chhogori example">
+                                    <div class="example-text">
+                                        <div class="prompt">
+                                            <h4>Prompt:</h4>
+                                            <p>Generate an image of Chhogori</p>
+                                        </div>
+                                        <div class="analysis">
+                                            <h4>Explanation:</h4>
+                                            <p>
+                                                Chhogori, also known as K2, is the second-highest mountain in the world.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="example" data-index="1">
+                                    <img src="static/img/oncilla.png" alt="Oncilla example">
+                                    <div class="example-text">
+                                        <div class="prompt">
+                                            <h4>Prompt:</h4>
+                                            <p>Generate an image of an Oncilla</p>
+                                        </div>
+                                        <div class="analysis">
+                                            <h4>Explanation:</h4>
+                                            <p>The oncilla, also known as the little spotted cat, is a small and elusive wild feline native to Central and South America.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="example" data-index="2">
+                                    <img src="static/img/chizarira.png" alt="Chizarira example">
+                                    <div class="example-text">
+                                        <div class="prompt">
+                                            <h4>Prompt:</h4>
+                                            <p>Generate an image of the view of Chizarira</p>
+                                        </div>
+                                        <div class="analysis">
+                                            <h4>Explanation:</h4>
+                                            <p>Chizarira is a remote and rugged national park in Zimbabwe, known for its dramatic escarpments, diverse wildlife, and pristine wilderness ideal for off-the-beaten-path safaris.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="example" data-index="3">
+                                    <img src="static/img/emptyglass.png" alt="Empty Glass example">
+                                    <div class="example-text">
+                                        <div class="prompt">
+                                            <h4>Prompt:</h4>
+                                            <p>Generate an image of a glass without water</p>
+                                        </div>
+                                        <div class="analysis">
+                                            <h4>Explanation:</h4>
+                                            <p>MetaMorph successfully generates an empty glass, differentiating with a full glass of water. </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="example" data-index="4">
+                                    <img src="static/img/fullglass.png" alt="Empty Glass example">
+                                    <div class="example-text">
+                                        <div class="prompt">
+                                            <h4>Prompt:</h4>
+                                            <p>Generate an image of a glass filled with water</p>
+                                        </div>
+                                        <div class="analysis">
+                                            <h4>Explanation:</h4>
+                                            <p>MetaMorph successfully generates a filled with glass instead of empty glass. </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
+                    
+                    <style>
+                        .examples-container {
+                            width: 100%;
+                            padding: 1rem;
+                        }
+                        
+                        .example-nav {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 1rem;
+                        }
+                        
+                        .nav-button {
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            font-size: 1.5rem;
+                            color: var(--primary);
+                            padding: 0.5rem 1rem;
+                        }
+                        
+                        .nav-button:hover {
+                            background: rgba(0,0,0,0.05);
+                            border-radius: 0.5rem;
+                        }
+                        
+                        .example {
+                            display: none;
+                            width: 100%;
+                        }
+                        
+                        .example img {
+                            width: 100%;
+                            border-radius: 0.5rem;
+                            margin-bottom: 1rem;
+                        }
+                        
+                        .example.active {
+                            display: block;
+                        }
+                        
+                        .example-text {
+                            background: #f8fafc;
+                            padding: 1.5rem;
+                            border-radius: 0.5rem;
+                        }
+                        
+                        .prompt, .analysis {
+                            margin-bottom: 1rem;
+                        }
+                        
+                        .prompt h4, .analysis h4 {
+                            font-weight: 600;
+                            margin-bottom: 0.5rem;
+                            color: var(--text);
+                        }
+                        
+                        .prompt p, .analysis p {
+                            color: #666;
+                            line-height: 1.5;
+                        }
+                        
+                        #example-counter {
+                            font-size: 0.9rem;
+                            color: #666;
+                        }
+                        </style>
+                        
+                        <script>
+                        let currentExample = 0;
+                        const totalExamples = 5;
+                        
+                        function showExample(index) {
+                            document.querySelectorAll('.example').forEach(ex => {
+                                ex.style.display = 'none';
+                                ex.classList.remove('active');
+                            });
+                            document.querySelector(`.example[data-index="${index}"]`).style.display = 'block';
+                            document.querySelector(`.example[data-index="${index}"]`).classList.add('active');
+                            document.getElementById('example-counter').textContent = `Example ${index + 1}/${totalExamples}`;
+                        }
+                        
+                        function nextExample(event) {
+                            if(event) event.stopPropagation();
+                            currentExample = (currentExample + 1) % totalExamples;
+                            showExample(currentExample);
+                        }
+                        
+                        function previousExample(event) {
+                            if(event) event.stopPropagation();
+                            currentExample = (currentExample - 1 + totalExamples) % totalExamples;
+                            showExample(currentExample);
+                        }
+                    </script>
+                    <!-- <div class="visual-example">
+                        <img src="knowledge_examples.png" alt="Knowledge Integration Examples">
+                    </div> -->
                 </div>
             </div>
+
+            
+            
+
+            
+            
+
+            
+            
+            
+
+            
+
+
+            
     
             <!-- Feature 3: Implicit Reasoning -->
             <div class="feature-card" onclick="toggleModelFeature('model-feature3')">
                 <div class="feature-header">
                     <div>
-                        <div class="feature-title">Visual Reasoning Capabilities</div>
+                        <div class="feature-title">Multimodal Reasoning Capabilities</div>
                         <div class="feature-summary">Demonstrates implicit reasoning in multimodal generation tasks</div>
                     </div>
                     <button class="toggle-button" id="toggle-model3">↓</button>
@@ -1396,8 +1730,301 @@
                         </div>
                     </div>
                     <div class="visual-example">
-                        <img src="reasoning_examples.png" alt="Reasoning Examples">
+                        <div class="examples-container">
+                            <div class="example-nav">
+                                <button onclick="event.stopPropagation(); previousReasoningExample()" class="nav-button">←</button>
+                                <span id="reasoning-counter">Example 1/5</span>
+                                <button onclick="event.stopPropagation(); nextReasoningExample()" class="nav-button">→</button>
+                            </div>
+                    
+                            <div class="examples">
+                                <!-- Monarch Butterfly Example -->
+                                <div class="example active" data-index="0">
+                                    <div class="prompt-box">
+                                        "Generate an image of the animal resulting from a monarch caterpillar's metamorphosis"
+                                    </div>
+                    
+                                    <div class="result-image">
+                                        <img src="static/img/butterfly.png" alt="Monarch Butterfly">
+                                    </div>
+                                    
+                                    <!-- <div class="reasoning-process"> -->
+                                    <div class="reasoning-process" onclick="event.stopPropagation()">
+                                        <div class="process-header">Model's Implicit Reasoning Process</div>
+                                        <div class="steps-progress">
+                                            <div class="step-dot active" onclick="showStep(0, 0, event)">1</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(0, 1, event)">2</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(0, 2, event)">3</div>
+                                        </div>                                        
+                                        <div class="steps-content">
+                                            <div class="step-box" data-step="0">
+                                                <div class="step-title">Initial Understanding</div>
+                                                <div class="step-detail">Identifies the starting point: monarch caterpillar</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="1">
+                                                <div class="step-title">Process Knowledge</div>
+                                                <div class="step-detail">Applies understanding of metamorphosis lifecycle</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="2">
+                                                <div class="step-title">Final Transformation</div>
+                                                <div class="step-detail">Determines the end result: monarch butterfly</div>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="reveal-prompt">
+                                            Click numbers above to explore the model's reasoning steps
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <!-- American Flag Example -->
+                                <div class="example" data-index="1">
+                                    <div class="prompt-box">
+                                        "Generate an image of the national flag of the country where Yellowstone National Park is located"
+                                    </div>
+                    
+                                    <div class="result-image">
+                                        <img src="static/img/usa_flag.png" alt="American Flag">
+                                    </div>
+                                    
+                                    <div class="reasoning-process" onclick="event.stopPropagation()">
+                                        <div class="process-header">Model's Implicit Reasoning Process</div>
+                                        <div class="steps-progress">
+                                            <div class="step-dot active" onclick="showStep(1, 0)">1</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(1, 1)">2</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(1, 2)">3</div>
+                                        </div>
+                                        
+                                        <div class="steps-content">
+                                            <div class="step-box" data-step="0">
+                                                <div class="step-title">Geographic Knowledge</div>
+                                                <div class="step-detail">Locates Yellowstone National Park</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="1">
+                                                <div class="step-title">Country Identification</div>
+                                                <div class="step-detail">Recognizes Yellowstone is in United States</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="2">
+                                                <div class="step-title">Symbol Generation</div>
+                                                <div class="step-detail">Generates the American flag based on national symbol knowledge</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <!-- Additional examples can be added similarly -->
+                            </div>
+                        </div>
                     </div>
+                    
+                    <style>
+                        .examples-container {
+                            padding: 1rem;
+                        }
+                        
+                        .prompt-box {
+                            background: linear-gradient(135deg, var(--primary), var(--accent));
+                            padding: 1rem 1.5rem;
+                            border-radius: 0.75rem;
+                            color: white;
+                            font-size: 1.1rem;
+                            line-height: 1.5;
+                            margin-bottom: 1.5rem;
+                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        }
+                        
+                        .result-image {
+                            margin: 1.5rem 0;
+                            padding: 0.5rem;
+                            background: white;
+                            border-radius: 0.75rem;
+                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        }
+                        
+                        .result-image img {
+                            width: 100%;
+                            border-radius: 0.5rem;
+                        }
+                        
+                        .reasoning-process {
+                            background: #f8fafc;
+                            padding: 1.5rem;
+                            border-radius: 1rem;
+                            margin-top: 1.5rem;
+                        }
+                        
+                        .process-header {
+                            text-align: center;
+                            color: var(--primary);
+                            font-weight: 600;
+                            margin-bottom: 1.5rem;
+                            font-size: 1.1rem;
+                        }
+                        
+                        .steps-progress {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-bottom: 1.5rem;
+                        }
+                        
+                        .step-dot {
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            background: white;
+                            border: 2px solid #e5e7eb;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-weight: 600;
+                            color: #6b7280;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        }
+                        
+                        .step-dot:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        }
+                        
+                        .step-dot.active {
+                            background: var(--primary);
+                            border-color: var(--primary);
+                            color: white;
+                        }
+                        
+                        .step-line {
+                            height: 2px;
+                            width: 80px;
+                            background: #e5e7eb;
+                            margin: 0 8px;
+                        }
+                        
+                        .steps-content {
+                            position: relative;
+                            min-height: 100px;
+                        }
+                        
+                        .step-box {
+                            background: white;
+                            padding: 1.5rem;
+                            border-radius: 0.75rem;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                            position: absolute;
+                            width: 100%;
+                            transition: all 0.3s ease;
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                        
+                        .step-box.hidden {
+                            opacity: 0;
+                            transform: translateY(10px);
+                            pointer-events: none;
+                        }
+                        
+                        .step-title {
+                            color: var(--primary);
+                            font-weight: 600;
+                            margin-bottom: 0.5rem;
+                        }
+                        
+                        .step-detail {
+                            color: #4b5563;
+                            line-height: 1.5;
+                        }
+                        
+                        .reveal-prompt {
+                            text-align: center;
+                            color: #6b7280;
+                            font-size: 0.9rem;
+                            margin-top: 1.5rem;
+                        }
+                        
+                        .example-nav {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 1.5rem;
+                        }
+                        
+                        .nav-button {
+                            background: white;
+                            border: 1px solid rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            font-size: 1.25rem;
+                            color: var(--primary);
+                            padding: 0.75rem 1rem;
+                            border-radius: 0.75rem;
+                            transition: all 0.2s ease;
+                        }
+                        
+                        .nav-button:hover {
+                            background: var(--primary);
+                            color: white;
+                            transform: translateY(-1px);
+                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        }
+                        
+                        #reasoning-counter {
+                            font-size: 0.95rem;
+                            color: #4b5563;
+                            font-weight: 500;
+                            background: #f8fafc;
+                            padding: 0.5rem 1rem;
+                            border-radius: 0.5rem;
+                            border: 1px solid rgba(0, 0, 0, 0.05);
+                        }
+                        
+                        @keyframes fadeInUp {
+                            from {
+                                opacity: 0;
+                                transform: translateY(10px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        .step-box:not(.hidden) {
+                            animation: fadeInUp 0.3s ease forwards;
+                        }
+                    </style>
+                    
+                    <script>
+                        function showStep(exampleIndex, stepIndex, event) {
+                            // Stop event from bubbling up to parent
+                            if (event) {
+                                event.stopPropagation();
+                            }
+                            
+                            // Hide all steps
+                            const steps = document.querySelectorAll(`.example[data-index="${exampleIndex}"] .step-box`);
+                            steps.forEach(step => step.classList.add('hidden'));
+                            
+                            // Show current step
+                            const currentStep = document.querySelector(`.example[data-index="${exampleIndex}"] .step-box[data-step="${stepIndex}"]`);
+                            currentStep.classList.remove('hidden');
+                            
+                            // Update dots
+                            const dots = document.querySelectorAll(`.example[data-index="${exampleIndex}"] .step-dot`);
+                            dots.forEach((dot, index) => {
+                                if (index <= stepIndex) {
+                                    dot.classList.add('active');
+                                } else {
+                                    dot.classList.remove('active');
+                                }
+                            });
+                        }
+                                                
+                    // Previous example navigation code...
+                    </script>
                 </div>
             </div>
         </div>
