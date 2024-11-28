@@ -1223,7 +1223,8 @@
                     
                     <div class="performance-text">
                         <p>
-                            MetaMorph demonstrates competitive performance across a wide range of tasks
+                            MetaMorph demonstrates competitive performance across a wide range of tasks. The model achieves strong results on understanding and generation benchmarks, despite using only 64 tokens for each image. The table below summarizes the performance of MetaMorph on various benchmarks.
+                            
                         </p>
 
                         <div id="tab:final_table" style="display: flex; flex-direction: column; align-items: center;">
@@ -1491,12 +1492,23 @@
                 </div>
                 <div class="feature-details" id="model-feature2">
                     <div class="feature-content">
-                        <p>MetaMorph demonstrates unique ability to leverage LLM knowledge:</p>
+                        <!-- <feature-content> -->
+                            <p>MetaMorph demonstrates ability to leverage the knowledge and capabilities of the pretrained language model for visual generation tasks:</p>
+                            <ul>
+                            <li>It can generate accurate visual representations for highly specialized concepts like "Chhogori" (the second highest mountain in the world), "Oncilla" (a small wild cat native to South America), and "Chizarira" (a remote national park in Zimbabwe). This shows MetaMorph is tapping into the broad world knowledge embedded in the LLM to inform its visual generation.</li>
+                            <li>The model exhibits nuanced understanding of complex semantics, correctly visualizing prompts such as negation ("a glass without water"). This semantic knowledge comes from the language understanding capabilities of the LLM.</li>
+                            <li>By transferring knowledge from the language domain to the visual domain, MetaMorph can generate meaningful visuals for a much wider range of concepts compared to traditional text-to-image models that rely on more limited text encoders. The LLM's encyclopedic knowledge becomes a rich source of visual understanding.</li>
+                            </ul>
+                            <p>These examples provide strong evidence that unifying language and vision in a single model allows visual generation to be guided by the linguistic reasoning and background knowledge of language models.</p>
+                        <!-- </feature-content> -->
+
+<!--                             
+                        <p>MetaMorph demonstrates ability to leverage LLM knowledge to generate visual tokens:</p>
                         <ul>
                             <li>Generates accurate visuals for specialized concepts (e.g., "Chhogori", "Oncilla")</li>
                             <li>Handles complex semantic nuances (negation, comparatives)</li>
                             <li>Transfers world knowledge to visual domain</li>
-                        </ul>
+                        </ul> -->
                         <!-- <div class="evidence-box">
                             <strong>Example:</strong> Successfully generates rare concepts that require domain knowledge
                         </div> -->
@@ -1719,45 +1731,56 @@
                 </div>
                 <div class="feature-details" id="model-feature3">
                     <div class="feature-content">
+
+                        <p>MetaMorph also demonstrate ''reasoning capabilities'' in multimodal tasks that go beyond simple mappings from text to image. In Physics of LLM, the authors observe that 
+                            LLM precompute reasoning graphs before generating any future token. Here we show this phenomenon is observed in multimodal generation.:</p>
+                        <ul>
+                        <li>The model can break down complex, multi-step prompts and solve them implicitly to generate the correct image. For example, given the prompt "Generate an image of the animal resulting from a monarch caterpillar's metamorphosis", MetaMorph reasons that a monarch caterpillar undergoes metamorphosis to become a butterfly and generates an image of a butterfly without being explicitly told each step.</li>
+                        <li>Importantly, MetaMorph performs this multi-step reasoning without explicit chaining or intermediate prompts. The reasoning is fully internal to the model.</li> 
+                        </ul>
+                        <p>These reasoning capabilities go far beyond traditional text-to-image models. By leveraging the language understanding and composition abilities of the LLM, MetaMorph can interpret and solve complex problems that require multiple steps of reasoning, demonstrating a deeper, more flexible multimodal model.</p>
+<!-- 
                         <p>The model shows sophisticated reasoning abilities:</p>
                         <ul>
                             <li>Solves multi-step visual puzzles implicitly</li>
-                            <li>Performs visual chain-of-thought without explicit prompting</li>
+                            <li>Performs implicit chain-of-thought without explicit prompting</li>
                             <li>Handles complex transformations and relationships</li>
                         </ul>
                         <div class="evidence-box">
                             <strong>Example:</strong> Generating "the animal resulting from a monarch caterpillar's metamorphosis" shows implicit multi-step reasoning
-                        </div>
+                        </div> -->
                     </div>
                     <div class="visual-example">
+                        
                         <div class="examples-container">
                             <div class="example-nav">
                                 <button onclick="event.stopPropagation(); previousReasoningExample()" class="nav-button">←</button>
-                                <span id="reasoning-counter">Example 1/5</span>
+                                <span id="reasoning-counter">Example 1/4</span>
                                 <button onclick="event.stopPropagation(); nextReasoningExample()" class="nav-button">→</button>
                             </div>
-                    
+                            
+                        
                             <div class="examples">
-                                <!-- Monarch Butterfly Example -->
-                                <div class="example active" data-index="0">
+                                <!-- Original Butterfly Example -->
+                                <div class="reasoning-example active" data-index="0">
                                     <div class="prompt-box">
                                         "Generate an image of the animal resulting from a monarch caterpillar's metamorphosis"
                                     </div>
-                    
+                        
                                     <div class="result-image">
                                         <img src="static/img/butterfly.png" alt="Monarch Butterfly">
                                     </div>
                                     
-                                    <!-- <div class="reasoning-process"> -->
                                     <div class="reasoning-process" onclick="event.stopPropagation()">
                                         <div class="process-header">Model's Implicit Reasoning Process</div>
                                         <div class="steps-progress">
-                                            <div class="step-dot active" onclick="showStep(0, 0, event)">1</div>
+                                            <div class="step-dot active" onclick="showStep(0, 0)">1</div>
                                             <div class="step-line"></div>
-                                            <div class="step-dot" onclick="showStep(0, 1, event)">2</div>
+                                            <div class="step-dot" onclick="showStep(0, 1)">2</div>
                                             <div class="step-line"></div>
-                                            <div class="step-dot" onclick="showStep(0, 2, event)">3</div>
-                                        </div>                                        
+                                            <div class="step-dot" onclick="showStep(0, 2)">3</div>
+                                        </div>
+                                        
                                         <div class="steps-content">
                                             <div class="step-box" data-step="0">
                                                 <div class="step-title">Initial Understanding</div>
@@ -1772,21 +1795,17 @@
                                                 <div class="step-detail">Determines the end result: monarch butterfly</div>
                                             </div>
                                         </div>
-                    
-                                        <div class="reveal-prompt">
-                                            Click numbers above to explore the model's reasoning steps
-                                        </div>
                                     </div>
                                 </div>
-                    
-                                <!-- American Flag Example -->
-                                <div class="example" data-index="1">
+                        
+                                <!-- New American Flag Example -->
+                                <div class="reasoning-example" data-index="1">
                                     <div class="prompt-box">
                                         "Generate an image of the national flag of the country where Yellowstone National Park is located"
                                     </div>
-                    
+                        
                                     <div class="result-image">
-                                        <img src="static/img/usa_flag.png" alt="American Flag">
+                                        <img src="static/img/usa.png" alt="American Flag">
                                     </div>
                                     
                                     <div class="reasoning-process" onclick="event.stopPropagation()">
@@ -1815,12 +1834,145 @@
                                         </div>
                                     </div>
                                 </div>
-                    
-                                <!-- Additional examples can be added similarly -->
+                                
+
+                                <!-- Example 3 -->
+                                <div class="reasoning-example" data-index="2">
+                                    <div class="prompt-box">
+                                        Generate an image of the flower celebrated in spring festivals in the country where sushi originated
+                                    </div>
+
+                                    <div class="result-image">
+                                        <img src="static/img/cherryblossom.png" alt="Cherry Blossom">
+                                    </div>
+
+                                    <div class="reasoning-process" onclick="event.stopPropagation()">
+                                        <div class="process-header">Model's Implicit Reasoning Process</div>
+                                        <div class="steps-progress">
+                                            <div class="step-dot active" onclick="showStep(2, 0)">1</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(2, 1)">2</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(2, 2)">3</div>
+                                        </div>
+
+                                        <div class="steps-content">
+                                            <div class="step-box" data-step="0">
+                                                <div class="step-title">Geographic Knowledge</div>
+                                                <div class="step-detail">Identifies the country where sushi originated: Japan.</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="1">
+                                                <div class="step-title">Cultural Knowledge</div>
+                                                <div class="step-detail">Recognizes cherry blossoms as the flower celebrated in Japan during spring festivals.</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="2">
+                                                <div class="step-title">Final Generation</div>
+                                                <div class="step-detail">Generates an image of cherry blossoms in a traditional Japanese setting.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Example 4 -->
+                                <div class="reasoning-example" data-index="3">
+                                    <div class="prompt-box">
+                                        Generate an image of the pet animal whose name is a rearrangement of the letters in the word 'tca'
+                                    </div>
+
+                                    <div class="result-image">
+                                        <img src="static/img/tca.png" alt="Cat">
+                                    </div>
+
+                                    <div class="reasoning-process" onclick="event.stopPropagation()">
+                                        <div class="process-header">Model's Implicit Reasoning Process</div>
+                                        <div class="steps-progress">
+                                            <div class="step-dot active" onclick="showStep(3, 0)">1</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(3, 1)">2</div>
+                                            <div class="step-line"></div>
+                                            <div class="step-dot" onclick="showStep(3, 2)">3</div>
+                                        </div>
+
+                                        <div class="steps-content">
+                                            <div class="step-box" data-step="0">
+                                                <div class="step-title">Lexical Knowledge</div>
+                                                <div class="step-detail">Rearranges the letters in the word 'tca' to form 'cat'.</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="1">
+                                                <div class="step-title">Animal Identification</div>
+                                                <div class="step-detail">Identifies 'cat' as a common pet animal.</div>
+                                            </div>
+                                            <div class="step-box hidden" data-step="2">
+                                                <div class="step-title">Final Generation</div>
+                                                <div class="step-detail">Generates an image of a domestic cat.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                                            
+
+
+
+
+
                             </div>
                         </div>
-                    </div>
-                    
+                        
+                        <script>
+                            let currentReasoningExample = 0;
+                            const totalReasoningExamples = 4;
+
+                            function showReasoningExample(index) {
+                                const examples = document.querySelectorAll('.reasoning-example');
+                                examples.forEach(ex => {
+                                    ex.style.display = 'none';
+                                    ex.classList.remove('active');
+                                });
+                                const currentExample = document.querySelector(`.reasoning-example[data-index="${index}"]`);
+                                if (currentExample) {
+                                    currentExample.style.display = 'block';
+                                    currentExample.classList.add('active');
+                                }
+                                document.getElementById('reasoning-counter').textContent = `Example ${index + 1}/${totalReasoningExamples}`;
+                            }
+
+                            function nextReasoningExample(event) {
+                                if (event) event.stopPropagation();
+                                currentReasoningExample = (currentReasoningExample + 1) % totalReasoningExamples;
+                                showReasoningExample(currentReasoningExample);
+                            }
+
+                            function previousReasoningExample(event) {
+                                if (event) event.stopPropagation();
+                                currentReasoningExample = (currentReasoningExample - 1 + totalReasoningExamples) % totalReasoningExamples;
+                                showReasoningExample(currentReasoningExample);
+                            }
+
+                            function showStep(exampleIndex, stepIndex) {
+                                // Get the currently active example based on the exampleIndex
+                                const activeExample = document.querySelector(`.reasoning-example[data-index="${exampleIndex}"]`);
+                                if (!activeExample) return;
+
+                                // Get all step-boxes and step-dots within the active example
+                                const steps = activeExample.querySelectorAll('.step-box');
+                                const dots = activeExample.querySelectorAll('.step-dot');
+
+                                // Hide all steps and reset all dots
+                                steps.forEach(step => step.classList.add('hidden'));
+                                dots.forEach(dot => dot.classList.remove('active'));
+
+                                // Show the specific step and update the corresponding dot
+                                const currentStep = activeExample.querySelector(`.step-box[data-step="${stepIndex}"]`);
+                                if (currentStep) currentStep.classList.remove('hidden');
+                                dots.forEach((dot, index) => {
+                                    if (index <= stepIndex) {
+                                        dot.classList.add('active');
+                                    }
+                                });
+                            }
+
+                        </script>
+
                     <style>
                         .examples-container {
                             padding: 1rem;
@@ -1836,20 +1988,90 @@
                             margin-bottom: 1.5rem;
                             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         }
-                        
-                        .result-image {
-                            margin: 1.5rem 0;
+                        .examples {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        .example {
+                            width: 100%;         /* Ensure example takes full width */
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;  /* Center all content within example */
+                            position: relative;   /* Add this */
+
+                        }
+
+                        .prompt-box {
+                            width: 88%;         /* Full width for prompt box */
+                        }
+/* .result-image {
+                            margin: 1.5rem auto;  
                             padding: 0.5rem;
+                            width: 30%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
                             background: white;
                             border-radius: 0.75rem;
                             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         }
-                        
+
                         .result-image img {
-                            width: 100%;
                             border-radius: 0.5rem;
                         }
-                        
+
+                                 */
+
+                     
+                        /* In the Multimodal Reasoning section */
+                        .visual-example img {
+                            width: 30%;  /* Add this line to make images smaller */
+                            height: auto;
+                            display: block;
+                            margin: 0 auto;
+                        }
+
+
+                        .reasoning-example,
+                        .example {
+                            display: none; /* Hide all examples by default */
+                        }
+
+                        .reasoning-example.active,
+                        .example.active {
+                            display: block; /* Only show active examples */
+                        }
+
+                        /* Keep the image sizing from our previous update */
+                        .result-image {
+                            margin: 1.5rem auto;
+                            padding: 0.5rem;
+                            width: 90%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: white;
+                            border-radius: 0.75rem;
+                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        }
+
+                        .result-image img {
+                            max-width: 100%;
+                            height: auto;
+                            border-radius: 0.5rem;
+                        }
+
+                        @media (max-width: 768px) {
+                            .result-image {
+                                width: 40%;
+                            }
+                        }
+
+                                                                                        
+
+
                         .reasoning-process {
                             background: #f8fafc;
                             padding: 1.5rem;
@@ -1916,7 +2138,7 @@
                             border-radius: 0.75rem;
                             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
                             position: absolute;
-                            width: 100%;
+                            width: 91%;
                             transition: all 0.3s ease;
                             opacity: 1;
                             transform: translateY(0);
@@ -1997,34 +2219,6 @@
                         }
                     </style>
                     
-                    <script>
-                        function showStep(exampleIndex, stepIndex, event) {
-                            // Stop event from bubbling up to parent
-                            if (event) {
-                                event.stopPropagation();
-                            }
-                            
-                            // Hide all steps
-                            const steps = document.querySelectorAll(`.example[data-index="${exampleIndex}"] .step-box`);
-                            steps.forEach(step => step.classList.add('hidden'));
-                            
-                            // Show current step
-                            const currentStep = document.querySelector(`.example[data-index="${exampleIndex}"] .step-box[data-step="${stepIndex}"]`);
-                            currentStep.classList.remove('hidden');
-                            
-                            // Update dots
-                            const dots = document.querySelectorAll(`.example[data-index="${exampleIndex}"] .step-dot`);
-                            dots.forEach((dot, index) => {
-                                if (index <= stepIndex) {
-                                    dot.classList.add('active');
-                                } else {
-                                    dot.classList.remove('active');
-                                }
-                            });
-                        }
-                                                
-                    // Previous example navigation code...
-                    </script>
                 </div>
             </div>
         </div>
