@@ -153,6 +153,16 @@
                 transform: translateY(-1px);
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             }
+            @media (max-width: 768px) {
+                .header-content h1 {
+                    font-size: 2.8rem;
+                }
+                
+                .header-content h2 {
+                    font-size: 1.5rem;
+                }
+            }
+
         </style>
     </head>
     <body>
@@ -166,7 +176,7 @@
                     </p>
 
                     <div class="emphasis-text">
-                        LLM is already <strong>VERY CLOSE</strong> to becoming a Unified Model!
+                        LLM is already <strong>VERY CLOSE</strong> to a Unified Model!
                     </div>
 
                     <div class="icon-container">
@@ -688,11 +698,12 @@
                 padding: 0 1rem;
             }
     
-            .finding-description {
-                color: #666;
-                line-height: 1.6;
-                max-width: 800px;
-                margin: 0 auto;
+            .finding-description p {
+                line-height: 1.8;
+                font-size: 1.05rem;
+                color: #374151;
+                max-width: 85ch; /* For optimal line length */
+                margin: 0 auto 1rem;
             }
     
             .stat-highlight {
@@ -2614,6 +2625,7 @@
                             margin-bottom: 1.5rem;
                             font-size: 1.1rem;
                         }
+                        
                         
                         .steps-progress {
                             display: flex;
